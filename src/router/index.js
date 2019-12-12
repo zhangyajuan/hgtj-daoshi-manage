@@ -56,109 +56,59 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/student',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    redirect: '/student/index',
+    name: 'student',
+    meta: { title: '学员管理', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'student',
+        name: '学员管理',
+        component: () => import('@/views/student/index'),
+        meta: { title: '学员管理', icon: 'table' }
+      },{
+        path: 'detail',
+        name: '学生详情',
+        component: () => import('@/views/student/detail')
+      }
+    ]
+  },
+  {
+    path: '/teacher',
+    component: Layout,
+    redirect: '/teacher/index',
+    name: 'teacher',
+    meta: { title: '导师管理', icon: 'example' },
+    children: [
+      {
+        path: 'teacher',
+        name: '导师管理',
+        component: () => import('@/views/teacher/index'),
+        meta: { title: '导师管理', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'detail',
+        name: '导师详情',
+        component: () => import('@/views/teacher/detail')
       }
     ]
   },
-
   {
-    path: '/form',
+    path: '/recommendation',
     component: Layout,
+    redirect: '/recommendation/index',
+    name: 'recommendation',
+    meta: { title: '申请管理', icon: 'example' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'recommendation',
+        name: '申请管理',
+        component: () => import('@/views/recommendation/index'),
+        meta: { title: '申请管理', icon: 'table' }
       }
     ]
   },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
