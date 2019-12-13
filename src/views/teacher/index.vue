@@ -31,8 +31,8 @@
       <el-table-column class-name="status-col" label="操作" align="center">
         <template slot-scope="scope">
         <el-button type="text" size="small">编辑</el-button>
-        <el-button type="text" size="small" @click="enableTeacher(scope.$index)">上架</el-button>
-        <el-button type="text" size="small" @click="disableTeacher(scope.$index)">下架</el-button>
+        <el-button type="text" size="small" v-if="scope.row.disable == 1" @click="enableTeacher(scope.$index)">上架</el-button>
+        <el-button type="text" size="small" v-else @click="disableTeacher(scope.$index)">下架</el-button>
         <el-button type="text" size="small">推荐学员</el-button>
       </template>
       </el-table-column>

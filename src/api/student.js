@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getStudentList(params) {
   return request({
-    url: 'api/v1/students',
+    url: 'api/v1/a/students',
     method: 'get',
     params
   })

@@ -1,4 +1,4 @@
-import { getRecommendationList, applyDeny, applyPass} from '@/api/recommendation'
+import { getRecommendationList, applyDeny, applyPass,applyDetail} from '@/api/recommendation'
 
 const actions = {
   // user login
@@ -28,6 +28,17 @@ const actions = {
     const {id, reason} = recommendInfo
     return new Promise((resolve, reject) => {
       applyDeny({reason: reason}, id).then(response => {
+        resolve(response)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  // 获取详情
+   applyDetail({ commit }, recommendInfo) {
+    const {id} = recommendInfo
+    return new Promise((resolve, reject) => {
+      applyDetail(id).then(response => {
         resolve(response)
       }).catch(error => {
         reject(error)

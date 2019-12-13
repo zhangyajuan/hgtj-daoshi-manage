@@ -35,13 +35,16 @@
       </el-table-column>
       <el-table-column label="状态"  align="center">
         <template slot-scope="scope">
-          {{ scope.row.status }}
+          {{ statusDes[scope.row.status + 2] }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="操作" align="center">
         <template slot-scope="scope">
-        <el-button type="text" size="small" @click="showReason(scope.$index, 'pass')">通过</el-button>
-        <el-button type="text" size="small" @click="showReason(scope.$index, 'deny')">驳回</el-button>
+        <el-button type="text" size="small" v-if="scope.row.status == 0" @click="showReason(scope.$index, 'pass')">通过</el-button>
+        <el-button type="text" size="small" v-else >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text" size="small" v-if="scope.row.status == 0"  @click="showReason(scope.$index, 'deny')">驳回</el-button>
+        <el-button type="text" size="small" v-else >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</el-button>
+        <el-button type="text" size="small" @click="goDetail(scope.$index)">详情</el-button>
       </template>
       </el-table-column>
     </el-table>
@@ -85,7 +88,8 @@ export default {
       },
       dialogTypeFormVisible: false,
       currentIndex: -1,
-      currentType: ''
+      currentType: '',
+      statusDes: ['导师驳回','系统驳回','待系统审核','待导师审核','导师审核通过']
     }
   },
   created() {
@@ -157,6 +161,9 @@ export default {
     },
     goStudentDetail(item){
        this.$router.push({ path: '/student/detail', query: item})
+    },
+    goDetail(index){
+       this.$router.push({ path: '/recommendation/detail', query: {id: this.list[index].id}})
     }
   }
 }

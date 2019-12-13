@@ -106,6 +106,11 @@ export const constantRoutes = [
         name: '申请管理',
         component: () => import('@/views/recommendation/index'),
         meta: { title: '申请管理', icon: 'table' }
+      },
+      {
+        path: 'detail',
+        name: '申请详情',
+        component: () => import('@/views/recommendation/detail')
       }
     ]
   },

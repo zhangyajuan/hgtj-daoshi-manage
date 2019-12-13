@@ -22,3 +22,10 @@ export function applyDeny(params,id) {
     params
   })
 }
+
+export function applyDetail(id) {
+  return request({
+    url: 'api/v1/a/applytoteacher/detail/{id}'.replace("{id}", id),
+    method: 'get'
+  })
+}

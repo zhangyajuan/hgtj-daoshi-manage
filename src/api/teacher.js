@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getTeacherList(params) {
   return request({
-    url: 'api/v1/teachers',
+    url: 'api/v1/a/teachers',
     method: 'get',
     params
   })
