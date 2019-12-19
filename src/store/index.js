@@ -7,6 +7,7 @@ import user from './modules/user'
 import student from './modules/student'
 import teacher from './modules/teacher'
 import recommendation from './modules/recommendation'
+import school from './modules/school'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ const store = new Vuex.Store({
     user,
     student,
     teacher,
-    recommendation
+    recommendation,
+    school
   },
   getters
 })

@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: '领航导师管理后台',
 
   /**
    * @type {boolean} true | false

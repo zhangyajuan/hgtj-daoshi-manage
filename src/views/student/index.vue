@@ -35,7 +35,7 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="操作" align="center">
         <template slot-scope="scope">
-        <el-button type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small" @click="goEdit(scope.$index)">编辑</el-button>
         <el-button type="text" v-if="scope.row.disable == 1" size="small" @click="enableStudent(scope.$index)">启用</el-button>
         <el-button type="text" v-else size="small" @click="disableStudent(scope.$index)">禁用</el-button>
         <el-button type="text" size="small">匹配导师</el-button>
@@ -112,7 +112,10 @@ export default {
     },
     goDetail(index){
        this.$router.push({ path: '/student/detail', query: this.list[index]})
-    }
+    },
+    goEdit(index){
+       this.$router.push({ path: '/student/edit', query: this.list[index]})
+    },
   }
 }
 </script>

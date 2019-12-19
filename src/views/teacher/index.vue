@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+    <el-row style="margin-bottom:20px;">
+        <el-col :span="12">
+            <el-button type="primary" size="small" @click="goAddTeacher()">创建导师</el-button>
+        </el-col>
+        <el-col :span="6" :offset="6" style="text-align:right;">
+            <el-input placeholder="请输入老师名称" v-model="searchName" size="small" style="width:150px;"></el-input>
+            <el-button type="primary" size="small" @click="getListFuc()">搜索</el-button>
+        </el-col>
+    </el-row>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -30,7 +39,8 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="操作" align="center">
         <template slot-scope="scope">
-        <el-button type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small" @click="goEdit(scope.$index)">编辑</el-button>
+        <el-button type="text" size="small" @click="deleteTeacher(scope.$index)">删除</el-button>
         <el-button type="text" size="small" v-if="scope.row.disable == 1" @click="enableTeacher(scope.$index)">上架</el-button>
         <el-button type="text" size="small" v-else @click="disableTeacher(scope.$index)">下架</el-button>
         <el-button type="text" size="small">推荐学员</el-button>
@@ -66,6 +76,7 @@ export default {
         total: 0,
         page_size:30
       },
+      searchName: ''
     }
   },
   created() {
@@ -115,8 +126,43 @@ export default {
         this.loading = false
       })
     },
+    deleteTeacher(index){
+      let _this = this
+       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.listLoading = true
+          let data = {
+              id: this.list[index].id
+          }
+          this.$store.dispatch('teacher/deleteTeacher', data).then((response) => {
+            
+            this.$message({
+              message: '老师已删除',
+              type: 'success'
+            });
+            _this.list.splice(index,1)
+            this.listLoading = false
+          }).catch(() => {
+            this.loading = false
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+    },
     goDetail(index){
        this.$router.push({ path: '/teacher/detail', query: this.list[index]})
+    },
+    goAddTeacher(){
+      this.$router.push({ path: '/teacher/add'})
+    },
+    goEdit(index){
+      this.$router.push({ path: '/teacher/edit', query: {id: this.list[index].id}})
     }
   }
 }

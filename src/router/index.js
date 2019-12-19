@@ -71,6 +71,10 @@ export const constantRoutes = [
         path: 'detail',
         name: '学生详情',
         component: () => import('@/views/student/detail')
+      },{
+        path: 'edit',
+        name: '修改学生',
+        component: () => import('@/views/student/edit')
       }
     ]
   },
@@ -91,6 +95,16 @@ export const constantRoutes = [
         path: 'detail',
         name: '导师详情',
         component: () => import('@/views/teacher/detail')
+      },
+      {
+        path: 'add',
+        name: '创建导师',
+        component: () => import('@/views/teacher/add')
+      },
+      {
+        path: 'edit',
+        name: '修改导师',
+        component: () => import('@/views/teacher/edit')
       }
     ]
   },

@@ -20,3 +20,10 @@ export function enableStudent(id) {
     method: 'post'
   })
 }
+export function editStudent(params,id) {
+  return request({
+    url: 'api/v1/a/student/{id}'.replace("{id}", id),
+    method: 'post',
+    params
+  })
+}
